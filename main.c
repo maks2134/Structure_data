@@ -10,7 +10,12 @@ struct temporarry_struct{
     int hoock;
 };
 
+void changeData(){
+
+}
+
 void addData(){
+    printf("Выберите какой сервис вас инетресует: \n");
 
 }
 
@@ -23,6 +28,23 @@ void checkData(){
 }
 
 void printData(){
+
+}
+
+void questionData(){
+    int questionDataBool;
+    printf("Выберите нужный функционал:\n");
+    printf("1:Добавить новую запись \n 2:Удалить запись \n 3:Изменить запись");
+    scanf("%d", questionDataBool);
+
+    switch (questionDataBool) {
+        case 1:
+            addData();
+        case 2:
+            removeData();
+        case 3:
+            changeData();
+    }
 
 }
 
