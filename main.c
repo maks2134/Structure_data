@@ -1,70 +1,35 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include <windows.h>
-#include <string.h>
-#include "struct.h"
+#include "hookUsers.h"
 #include "systemTech.h"
-#include "userInfo.h"
-#include "IdWork.h"
-
-void changeData(){
-
-}
-
-void addData(){
-
-
-}
-
-void removeData(){
-
-}
-
-void checkData(){
-
-}
-
-void printData(){
-
-}
-
-void sortingData();
 
 void questionData(){
-    changeConsoleTextColor(FOREGROUND_GREEN);
-    int questionDataBool;
+    changeConsoleTextColor(FOREGROUND_GREEN); //Выбираем цвет текста консоли вызывается в написанном заголовочном файле systemTech.h
+    int questionDataBool; //объявляем переменную иммитирующую логику выбора
     printf("\n Выберите нужный функционал:\n");
-    printf("\n 1:Добавить новую запись \n 2:Удалить запись \n 3:Изменить запись");
-    scanf("%d", questionDataBool);
-    switch (questionDataBool) {
+    printf("\n 1:Добавить новую запись \n 2:Удалить запись \n 3:Изменить запись \n ");
+    scanf("%d", &questionDataBool); //считываем переменную иммитирующую логику выбора
+    switch (questionDataBool) { //объявляем условную конструкцию switch
         case 1:
-            addData();
+            addData(); //Функция добавления данных
+            break;
         case 2:
-            removeData();
+            removeData(); //Функция удаления данных
+            break;
         case 3:
-            changeData();
+            changeData(); //Проверка данных
+            break;
+        default:
+            printf("Неверный ввод"); //Работа программу на случай неверного ввода
+            break;
     }
 
 }
 
-void txtInit(char txtName[]) {
-    FILE *file = fopen(txtName, "w"); // Открываем файл с переданным именем для записи
-
-    if (file == NULL) { //Проверка на существования файла
-        printf("Не удалось открыть файл!");
-        getchar();
-        exit(1);
-    }
-
-    fclose(file);
-}
-
-int main(int argc, char *argv[]) {
+int main() {
     SetConsoleOutputCP(CP_UTF8); //Устанавливаем формат кодировки
     char* txtName = "C:\\Users\\maks2\\CLionProjects\\Structure_data\\test.txt";
-    txtInit(txtName); //Инициализируем работу с текстовым файлом
     printf("------------------------------------------------ СИСТЕМА РЕГИСТРАЦИИ ------------------------------------------------");
-
-    questionData();
-    return 0;
+    questionData(); // переходим к выбору функционала
+    return 0; //завершаем работу программы
 }

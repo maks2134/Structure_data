@@ -1,12 +1,11 @@
 #include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <time.h>
 
-int GetNextId();
+int GetNextId(); //шаблон функции для нового id на новой строке
 
 void IdGenerate() {
-    char id[20];
+    char id[20]; //инициализируем полу id
     time_t current_time;
     struct tm* time_info;
 
@@ -25,7 +24,7 @@ void IdGenerate() {
     }
 
     // Записываем сгенерированный ID в файл в новой строке с номером
-    fprintf(file, "%d. %s\n", GetNextId(), id);
+    fprintf(file, "%s\n", id);
 
     // Закрываем файл
     fclose(file);

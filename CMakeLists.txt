@@ -9,6 +9,8 @@ add_executable(practica main.c struct.h
         systemTech.h
         systemTech.c
         IdWork.h
-        IdWork.c)
+        IdWork.c
+        hookUsers.h
+        hookUsers.c)
 
 target_link_libraries(practica PRIVATE winmm)

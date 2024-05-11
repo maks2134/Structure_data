@@ -1,12 +1,15 @@
 #ifndef PRACTICA_STRUCT_H
 #define PRACTICA_STRUCT_H
 
-struct temporarry_struct{
-    int id;
-    char name;
-    int date;
-    char* user;
-    int hoock;
+struct temporary_struct {
+    char* id;
+    char* name;
+    int hock;
+    struct time_struct {
+        int Days;
+        int hours;
+        char* Month;
+    } time_info;
 };
 
 #endif
