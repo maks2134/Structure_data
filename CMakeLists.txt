@@ -3,7 +3,7 @@ project(practica C)
 
 set(CMAKE_C_STANDARD 11)
 
-add_executable(practica main.c struct.h
+add_executable(practica main.c
         userInfo.h
         userInfo.c
         systemTech.h
@@ -11,6 +11,11 @@ add_executable(practica main.c struct.h
         IdWork.h
         IdWork.c
         hookUsers.h
-        hookUsers.c)
+        hookUsers.c
+        admin.h
+        admin.c
+        sha256.h
+        sha256.c
+)
 
 target_link_libraries(practica PRIVATE winmm)

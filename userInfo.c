@@ -95,6 +95,7 @@ void delimeter(){
 }
 
 void UserGeneration(){ //основная функция генерации пользователя
+
     IdGenerate();
     ClearConsole();
     char* name = nameInfo();
@@ -106,5 +107,6 @@ void UserGeneration(){ //основная функция генерации по
     delimeter();
     ClearConsole();
     printf("Информация успешно записана");
+
     free(name);
 }
