@@ -14,6 +14,7 @@ void removeData(){
 void checkData(){
     ClearConsole();
     startAdminPanel();
+
 }
 
 void printData(){

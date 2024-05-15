@@ -4,6 +4,7 @@
 void startAdminPanel();
 void registrationAdmin(const char *password, const char* login, const char* code);
 void loginAdmin();
+void loginCheck(const char *login, const char *password);
 void deleteAdmin();
 
 struct adminData{
