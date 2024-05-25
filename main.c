@@ -2,39 +2,48 @@
 #include <windows.h>
 #include "hookUsers.h"
 #include "systemTech.h"
+#include "checking.h"
 
 enum {START ,ADD, REMOVE, CHANGE, CHECK, END};
 
 void questionData(){
-    changeConsoleTextColor(FOREGROUND_GREEN); //Выбираем цвет текста консоли вызывается в написанном заголовочном файле systemTech.h
+    changeConsoleTextColor(FOREGROUND_GREEN); // Выбираем цвет текста консоли (определено в systemTech.h)
 
-    int questionDataBool; //объявляем переменную иммитирующую логику выбора
+    int questionDataBool; // Переменная, имитирующая логику выбора
     printf("\n Выберите нужный функционал:\n");
-    printf("\n 1:Добавить новую запись \n 2:Удалить запись \n 3:Изменить запись \n 4:Проверить запись(доступно только для Admin) \n ");
-    scanf("%d", &questionDataBool); //считываем переменную иммитирующую логику выбора
-    switch (questionDataBool) { //объявляем условную конструкцию switch
+    printf("\n 1: Добавить новую запись \n 2: Удалить запись \n 3: Изменить запись \n 4: Проверить запись (доступно только для Админа) \n ");
+    scanf("%d", &questionDataBool); // Считываем переменную, имитирующую логику выбора
+    switch (questionDataBool) {
         case ADD:
-            addData(); //Функция добавления данных
+            addData(); // Функция добавления данных
             break;
         case REMOVE:
-            removeData(); //Функция удаления данных
+            removeData(); // Функция удаления данных
             break;
         case CHANGE:
-            changeData(); //Проверка данных
+            changeData(); // Функция изменения данных
             break;
-        case CHECK: //изменение данных
-            checkData();
+        case CHECK:
+            checkData(); // Функция проверки данных
+            break;
+        case END:
+            GenerateReport(); // Функция для генерации отчета
             break;
         default:
-            printf("Неверный ввод"); //Работа программу на случай неверного ввода
+            printf("Неверный ввод"); // Обработка некорректного ввода
             break;
     }
-
 }
 
 int main() {
-    SetConsoleOutputCP(CP_UTF8); //Устанавливаем формат кодировки
+    SetConsoleOutputCP(CP_UTF8); // Устанавливаем UTF-8 кодировку
     printf("------------------------------------------------ СИСТЕМА РЕГИСТРАЦИИ ------------------------------------------------");
-    questionData(); // переходим к выбору функционала
-    return 0; //завершаем работу программы
+    int choice;
+    do {
+        questionData(); // Переходим к выбору функционала
+        printf("\nЖелаете продолжить? (1: Да, 0: Нет): ");
+        scanf("%d", &choice); // Спрашиваем пользователя, хочет ли он продолжить
+        ClearConsole();
+    } while (choice != 0); // Продолжаем цикл до тех пор, пока пользователь не решит завершить программу
+    return 0; // Завершаем программу
 }

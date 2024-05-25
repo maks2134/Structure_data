@@ -14,7 +14,6 @@ void removeData(){
 void checkData(){
     ClearConsole();
     startAdminPanel();
-
 }
 
 void printData(){
@@ -28,5 +27,4 @@ void sortingData(){
 void changeData(){
     ClearConsole();
     startAdminPanel();
-
 }

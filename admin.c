@@ -3,6 +3,7 @@
 #include "systemTech.h"
 #include "sha256.h"
 #include <string.h>
+#include "checking.h"
 
 void registrationAdmin(const char *password, const char* login, const char* code);
 
@@ -58,6 +59,7 @@ void loginCheck(const char *login, const char *password) {
     if (isValidLogin) {
         printf("Вход выполнен успешно.\n");
         // Вызов функции для работы с панелью администратора
+        GenerateReport();
     } else {
         printf("Ошибка входа. Проверьте логин и пароль.\n");
         // Запрос на повторный ввод логина и пароля
