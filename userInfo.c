@@ -1,5 +1,6 @@
 #include "IdWork.h"
 #include <stdio.h>
+#include <string.h>
 #include <stdlib.h>
 #include "systemTech.h"
 
@@ -80,6 +81,34 @@ void delimeter(){
     fprintf(file, "\n");
 }
 
+void ReadID() {
+    FILE* file = fopen("C:\\Users\\maks2\\CLionProjects\\Structure_data\\admin.txt", "r");
+    if (file == NULL) {
+        printf("Ошибка при открытии файла.\n");
+        Exit();
+    }
+
+    char line[256];
+    char lastLine[256];
+    lastLine[0] = '\0'; // Инициализация пустой строки
+
+    while (fgets(line, sizeof(line), file)) {
+        strcpy(lastLine, line); // Сохраняем последнюю считанную строку
+    }
+
+    fclose(file);
+
+    if (lastLine[0] != '\0') {
+        char* lastID = strrchr(lastLine, ' ');
+        if (lastID != NULL) {
+            lastID++; // Пропускаем пробел, чтобы получить начало ID
+            printf("Информация успешно записана! \nВаш ID(обязательно запомните его): %s", lastID);
+        }
+    } else {
+        printf("Файл пуст или не удалось прочитать содержимое.\n");
+    }
+}
+
 void UserGeneration() {
     DataComplictation();
     ClearConsole();
@@ -90,7 +119,6 @@ void UserGeneration() {
     IdGenerate();
     ClearConsole();
     delimeter();
-
     ClearConsole();
-    printf("Информация успешно записана\n");
+    ReadID();
 }

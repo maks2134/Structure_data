@@ -1,5 +1,6 @@
 #include "userInfo.h"
 #include "systemTech.h"
+#include "remove.h"
 #include "admin.h"
 
 void addData(){
@@ -8,7 +9,8 @@ void addData(){
 }
 
 void removeData(){
-
+    ClearConsole();
+    removeUser();
 }
 
 void checkData(){
@@ -16,15 +18,12 @@ void checkData(){
     startAdminPanel();
 }
 
-void printData(){
-
-}
 
 void sortingData(){
+    ClearConsole();
 
 }
 
 void changeData(){
     ClearConsole();
-    startAdminPanel();
 }

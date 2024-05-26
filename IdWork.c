@@ -24,11 +24,11 @@ void IdGenerate() {
     }
 
     // Записываем сгенерированный ID в файл в новой строке с номером
-    fprintf(file, "%s ", id);
+    fprintf(file, "%s\n", id);
 
     // Закрываем файл
     fclose(file);
-
+    printf("%s\n", id);
     printf("\n Уникальный ID записан в файл admin.txt.\n");
 }
 

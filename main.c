@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include "hookUsers.h"
-#include "systemTech.h"
+#include "systemTech.h" //функции для работы с системой
 #include "checking.h"
 
 enum {START ,ADD, REMOVE, CHANGE, CHECK, END};
@@ -39,7 +39,7 @@ int main() {
     SetConsoleOutputCP(CP_UTF8); // Устанавливаем UTF-8 кодировку
     printf("------------------------------------------------ СИСТЕМА РЕГИСТРАЦИИ ------------------------------------------------");
     int choice;
-    do {
+    do { //зацикливаем main
         questionData(); // Переходим к выбору функционала
         printf("\nЖелаете продолжить? (1: Да, 0: Нет): ");
         scanf("%d", &choice); // Спрашиваем пользователя, хочет ли он продолжить

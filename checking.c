@@ -34,7 +34,7 @@ void GenerateReport() {
         char time[6];
         sscanf(line, "Place %d %5s", &place, time);
 
-        // Update place count
+        // Обновление колличества мест
         int placeFound = 0;
         for (int i = 0; i < placeCountSize; i++) {
             if (placeCounts[i].place == place) {
@@ -49,7 +49,7 @@ void GenerateReport() {
             placeCountSize++;
         }
 
-        // Update time count
+        // Обновление колличества времени
         int timeFound = 0;
         for (int i = 0; i < timeCountSize; i++) {
             if (strcmp(timeCounts[i].time, time) == 0) {
@@ -67,7 +67,7 @@ void GenerateReport() {
 
     fclose(file);
 
-    // Determine the most visited place
+    // Выделение самых посещаемых мест
     int maxPlaceCount = 0;
     int mostVisitedPlace = 0;
     for (int i = 0; i < placeCountSize; i++) {
@@ -77,7 +77,7 @@ void GenerateReport() {
         }
     }
 
-    // Determine the most popular time
+    // Выделение самого популярного времени
     int maxTimeCount = 0;
     char mostPopularTime[6] = "";
     for (int i = 0; i < timeCountSize; i++) {
@@ -87,7 +87,7 @@ void GenerateReport() {
         }
     }
     ClearConsole();
-    // Generate the report table
+    // Генерация отчёта в виде таблицы
     printf("|----------------------|------------------|\n");
     printf("| Most visited place   | Most popular time|\n");
     printf("|----------------------+------------------|\n");

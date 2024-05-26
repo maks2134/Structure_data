@@ -18,4 +18,6 @@ add_executable(practica main.c
         sha256.c
         checking.c
         checking.h
+        removeUser.c
+        remove.h
 )
