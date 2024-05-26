@@ -74,7 +74,7 @@ int PlaceControl() {
     int availableSeats[MAX_PLACES];
 
     for (int i = 0; i < MAX_PLACES; ++i) {
-        availableSeats[i] = randomRange(1, 25); // Генерация случайного числа от 1 до 125
+        availableSeats[i] = randomRange(1, 25); // Генерация случайного числа от 1 до 25
         push(&placeControl, places[i], availableSeats[i]);
     }
 
