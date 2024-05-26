@@ -2,6 +2,8 @@
 #include "systemTech.h"
 #include "remove.h"
 #include "admin.h"
+#include "changeUser.h"
+#include "sorting.h"
 
 void addData(){
     ClearConsole();
@@ -20,10 +22,10 @@ void checkData(){
 
 
 void sortingData(){
-    ClearConsole();
-
+    sorting();
 }
 
 void changeData(){
     ClearConsole();
+    changeUsers();
 }

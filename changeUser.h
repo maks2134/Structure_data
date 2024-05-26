@@ -1,0 +1,4 @@
+#ifndef PRACTICA_CHANGEUSER_H
+#define PRACTICA_CHANGEUSER_H
+void changeUsers();
+#endif //PRACTICA_CHANGEUSER_H

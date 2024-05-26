@@ -20,4 +20,8 @@ add_executable(practica main.c
         checking.h
         removeUser.c
         remove.h
+        changeUser.c
+        changeUser.h
+        sorting.c
+        sorting.h
 )

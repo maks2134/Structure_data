@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "systemTech.h"
+#include "hookUsers.h"
 
 #define MAX_PLACES 100
 #define MAX_TIMES 100
@@ -92,6 +93,15 @@ void GenerateReport() {
     printf("| Most visited place   | Most popular time|\n");
     printf("|----------------------+------------------|\n");
     printf("| Place %d              | %-16s |\n", mostVisitedPlace, mostPopularTime);
-    printf("|-----------------------------------------|\n");
+    printf("|-----------------------------------------|\n\n\n\n");
+
+    int choise;
+    printf("Желаете отсортировать места по популрности?\n1-Да\t2-нет\n");
+    scanf("%d",&choise);
+    if(choise){
+        sortingData();
+    }else{
+        return;
+    }
 
 }

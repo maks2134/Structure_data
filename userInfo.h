@@ -4,15 +4,7 @@
 void UserGeneration();
 void nameInfo();
 void timeInfo();
-void UserAuth();
 void DataComplictation();
 void delimeter();
 
-struct userInfo{
-    char* name;
-    int id;
-    double time;
-    char* places;
-
-};
 #endif
