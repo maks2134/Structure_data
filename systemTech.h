@@ -4,4 +4,5 @@
 void changeConsoleTextColor(int color);
 void ClearConsole();
 void Exit();
+void Music();
 #endif

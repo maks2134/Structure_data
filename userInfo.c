@@ -3,6 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "systemTech.h"
+#include <time.h>
 
 void nameInfo() {
     char* name = (char*) calloc(101, sizeof(char));
@@ -108,6 +109,7 @@ void ReadID() {
         printf("Файл пуст или не удалось прочитать содержимое.\n");
     }
 }
+
 
 void UserGeneration() {
     DataComplictation();
