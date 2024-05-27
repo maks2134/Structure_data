@@ -18,5 +18,5 @@ void Exit() { // Выход из программы
 }
 
 void Music() { //Работа с аудио для фона консоли
-    PlaySound("C:\\Users\\maks2\\CLionProjects\\Structure_data\\New.wav", NULL, SND_FILENAME | SND_ASYNC);
+    PlaySound("C:\\Users\\maks2\\CLionProjects\\Structure_data\\uy.wav", NULL, SND_FILENAME | SND_ASYNC);
 }

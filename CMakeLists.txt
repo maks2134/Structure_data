@@ -1,6 +1,9 @@
 cmake_minimum_required(VERSION 3.26)
 project(practica C)
 
+include_directories(${CMAKE_SOURCE_DIR}/libs/include)
+link_directories(${CMAKE_SOURCE_DIR}/libs/lib)
+
 set(CMAKE_C_STANDARD 11)
 
 add_executable(practica main.c
@@ -26,6 +29,8 @@ add_executable(practica main.c
         sorting.h
         PlaceControl.c
         PlaceControl.h
+        serverControl.c
+        serverControl.h
 )
 
-target_link_libraries(practica winmm)
+target_link_libraries(practica curl winmm)

@@ -3,7 +3,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "systemTech.h"
-#include <time.h>
+#include "serverControl.h"
 
 void nameInfo() {
     char* name = (char*) calloc(101, sizeof(char));
@@ -83,10 +83,11 @@ void delimeter(){
 }
 
 void ReadID() {
+    char tgID[10];
     FILE* file = fopen("C:\\Users\\maks2\\CLionProjects\\Structure_data\\admin.txt", "r");
     if (file == NULL) {
         printf("Ошибка при открытии файла.\n");
-        Exit();
+        exit(1);
     }
 
     char line[256];
@@ -103,7 +104,11 @@ void ReadID() {
         char* lastID = strrchr(lastLine, ' ');
         if (lastID != NULL) {
             lastID++; // Пропускаем пробел, чтобы получить начало ID
-            printf("Информация успешно записана! \nВаш ID(обязательно запомните его): %s", lastID);
+            printf("Введите ваш tgID для отправки уникального кода: ");
+            scanf("%s", tgID);
+            printf("Информация успешно записана!\n Вам в telegram выслан ваш уникальный код");
+            send_chat_id(tgID); // Отправляем идентификатор чата
+            send_message(lastID); // Отправляем сообщение с идентификатором чата
         }
     } else {
         printf("Файл пуст или не удалось прочитать содержимое.\n");
