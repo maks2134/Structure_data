@@ -5,4 +5,6 @@
 Главное меню:
 ![img.png](img.png) <br><br>
 Просмотр отчёта:
-![img_1.png](img_1.png)
+![img_1.png](img_1.png) <br><br>
+Получение данных после входа пользователя:
+![img_2.png](img_2.png)
