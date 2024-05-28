@@ -83,7 +83,7 @@ void delimeter(){
 }
 
 void ReadID() {
-    char tgID[10];
+    char tgID[20];
     FILE* file = fopen("C:\\Users\\maks2\\CLionProjects\\Structure_data\\admin.txt", "r");
     if (file == NULL) {
         printf("Ошибка при открытии файла.\n");
@@ -109,6 +109,7 @@ void ReadID() {
             printf("Информация успешно записана!\n Вам в telegram выслан ваш уникальный код");
             send_chat_id(tgID); // Отправляем идентификатор чата
             send_message(lastID); // Отправляем сообщение с идентификатором чата
+//            GenerateQrCodeID(lastID); //Отправляем Qr-код
         }
     } else {
         printf("Файл пуст или не удалось прочитать содержимое.\n");

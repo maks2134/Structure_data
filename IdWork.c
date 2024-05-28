@@ -25,7 +25,6 @@ void IdGenerate() {
 
     // Записываем сгенерированный ID в файл в новой строке с номером
     fprintf(file, "%s", id);
-
     // Закрываем файл
     fclose(file);
     printf("%s\n", id);

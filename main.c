@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <windows.h>
 #include "hookUsers.h"
-#include "systemTech.h" //функции для работы с системой
+#include "systemTech.h"
 #include "checking.h"
 
 enum {START ,ADD, REMOVE, CHANGE, CHECK, END};
