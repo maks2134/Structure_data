@@ -7,15 +7,102 @@
 #define MAX_PLACES 100
 #define MAX_TIMES 100
 
-typedef struct {
+typedef struct PlaceNode {
     int place;
     int count;
-} PlaceCount;
+    struct PlaceNode *left;
+    struct PlaceNode *right;
+} PlaceNode;
 
-typedef struct {
+typedef struct TimeNode {
     char time[6];
     int count;
-} TimeCount;
+    struct TimeNode *left;
+    struct TimeNode *right;
+} TimeNode;
+
+PlaceNode* createPlaceNode(int place) {
+    PlaceNode *newNode = (PlaceNode*) malloc(sizeof(PlaceNode));
+    newNode->place = place;
+    newNode->count = 1;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+PlaceNode* insertPlaceNode(PlaceNode *root, int place) {
+    if (root == NULL) {
+        return createPlaceNode(place);
+    }
+    if (place < root->place) {
+        root->left = insertPlaceNode(root->left, place);
+    } else if (place > root->place) {
+        root->right = insertPlaceNode(root->right, place);
+    } else {
+        root->count++;
+    }
+    return root;
+}
+
+TimeNode* createTimeNode(char *time) {
+    TimeNode *newNode = (TimeNode*) malloc(sizeof(TimeNode));
+    strcpy(newNode->time, time);
+    newNode->count = 1;
+    newNode->left = newNode->right = NULL;
+    return newNode;
+}
+
+TimeNode* insertTimeNode(TimeNode *root, char *time) {
+    if (root == NULL) {
+        return createTimeNode(time);
+    }
+    int cmp = strcmp(time, root->time);
+    if (cmp < 0) {
+        root->left = insertTimeNode(root->left, time);
+    } else if (cmp > 0) {
+        root->right = insertTimeNode(root->right, time);
+    } else {
+        root->count++;
+    }
+    return root;
+}
+
+void findMaxPlace(PlaceNode *root, int *maxCount, int *mostVisitedPlace) {
+    if (root != NULL) {
+        findMaxPlace(root->left, maxCount, mostVisitedPlace);
+        if (root->count > *maxCount) {
+            *maxCount = root->count;
+            *mostVisitedPlace = root->place;
+        }
+        findMaxPlace(root->right, maxCount, mostVisitedPlace);
+    }
+}
+
+void findMaxTime(TimeNode *root, int *maxCount, char *mostPopularTime) {
+    if (root != NULL) {
+        findMaxTime(root->left, maxCount, mostPopularTime);
+        if (root->count > *maxCount) {
+            *maxCount = root->count;
+            strcpy(mostPopularTime, root->time);
+        }
+        findMaxTime(root->right, maxCount, mostPopularTime);
+    }
+}
+
+void freePlaceTree(PlaceNode *root) {
+    if (root != NULL) {
+        freePlaceTree(root->left);
+        freePlaceTree(root->right);
+        free(root);
+    }
+}
+
+void freeTimeTree(TimeNode *root) {
+    if (root != NULL) {
+        freeTimeTree(root->left);
+        freeTimeTree(root->right);
+        free(root);
+    }
+}
 
 void GenerateReport() {
     FILE *file = fopen("C:\\Users\\maks2\\CLionProjects\\Structure_data\\admin.txt", "r");
@@ -24,10 +111,8 @@ void GenerateReport() {
         return;
     }
 
-    PlaceCount placeCounts[MAX_PLACES] = {0};
-    TimeCount timeCounts[MAX_TIMES] = {0};
-    int placeCountSize = 0;
-    int timeCountSize = 0;
+    PlaceNode *placeRoot = NULL;
+    TimeNode *timeRoot = NULL;
 
     char line[256];
     while (fgets(line, sizeof(line), file)) {
@@ -35,62 +120,24 @@ void GenerateReport() {
         char time[6];
         sscanf(line, "Place %d %5s", &place, time);
 
-        // Обновление колличества мест
-        int placeFound = 0;
-        for (int i = 0; i < placeCountSize; i++) {
-            if (placeCounts[i].place == place) {
-                placeCounts[i].count++;
-                placeFound = 1;
-                break;
-            }
-        }
-        if (!placeFound && placeCountSize < MAX_PLACES) {
-            placeCounts[placeCountSize].place = place;
-            placeCounts[placeCountSize].count = 1;
-            placeCountSize++;
-        }
-
-        // Обновление колличества времени
-        int timeFound = 0;
-        for (int i = 0; i < timeCountSize; i++) {
-            if (strcmp(timeCounts[i].time, time) == 0) {
-                timeCounts[i].count++;
-                timeFound = 1;
-                break;
-            }
-        }
-        if (!timeFound && timeCountSize < MAX_TIMES) {
-            strcpy(timeCounts[timeCountSize].time, time);
-            timeCounts[timeCountSize].count = 1;
-            timeCountSize++;
-        }
+        placeRoot = insertPlaceNode(placeRoot, place);
+        timeRoot = insertTimeNode(timeRoot, time);
     }
 
     fclose(file);
 
-    // Выделение самых посещаемых мест
     int maxPlaceCount = 0;
     int mostVisitedPlace = 0;
-    for (int i = 0; i < placeCountSize; i++) {
-        if (placeCounts[i].count > maxPlaceCount) {
-            maxPlaceCount = placeCounts[i].count;
-            mostVisitedPlace = placeCounts[i].place;
-        }
-    }
+    findMaxPlace(placeRoot, &maxPlaceCount, &mostVisitedPlace);
 
-    // Выделение самого популярного времени
     int maxTimeCount = 0;
     char mostPopularTime[6] = "";
-    for (int i = 0; i < timeCountSize; i++) {
-        if (timeCounts[i].count > maxTimeCount) {
-            maxTimeCount = timeCounts[i].count;
-            strcpy(mostPopularTime, timeCounts[i].time);
-        }
-    }
+    findMaxTime(timeRoot, &maxTimeCount, mostPopularTime);
+
     ClearConsole();
     // Генерация отчёта в виде таблицы
     printf("|----------------------|------------------|\n");
-    printf("| Most visited place   | Most popular time|\n");
+    printf("| популярное место     |  популярное время|\n");
     printf("|----------------------+------------------|\n");
     printf("| Place %d              | %-16s |\n", mostVisitedPlace, mostPopularTime);
     printf("|-----------------------------------------|\n\n\n\n");

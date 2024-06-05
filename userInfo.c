@@ -107,6 +107,7 @@ void ReadID() {
             printf("Введите ваш tgID для отправки уникального кода: ");
             scanf("%s", tgID);
             printf("Информация успешно записана!\n Вам в telegram выслан ваш уникальный код");
+            printf("\n");
             send_chat_id(tgID); // Отправляем идентификатор чата
             send_message(lastID); // Отправляем сообщение с идентификатором чата
 //            GenerateQrCodeID(lastID); //Отправляем Qr-код
@@ -126,7 +127,7 @@ void UserGeneration() {
     ClearConsole();
     IdGenerate();
     ClearConsole();
+    ReadID();
     delimeter();
     ClearConsole();
-    ReadID();
 }

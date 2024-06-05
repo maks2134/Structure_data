@@ -4,7 +4,7 @@
 #include "systemTech.h"
 #include "checking.h"
 
-enum {START ,ADD, REMOVE, CHANGE, CHECK, END};
+enum {NUL ,ADD, REMOVE, CHANGE, CHECK};
 
 void questionData(){
     changeConsoleTextColor(FOREGROUND_GREEN); // Выбираем цвет текста консоли (определено в systemTech.h)
@@ -25,9 +25,6 @@ void questionData(){
             break;
         case CHECK:
             checkData(); // Функция проверки данных
-            break;
-        case END:
-            GenerateReport(); // Функция для генерации отчета
             break;
         default:
             printf("Неверный ввод"); // Обработка некорректного ввода

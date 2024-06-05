@@ -27,8 +27,6 @@ add_executable(practica main.c
         changeUser.h
         sorting.c
         sorting.h
-        PlaceControl.c
-        PlaceControl.h
         serverControl.c
         serverControl.h
 )
