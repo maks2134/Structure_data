@@ -110,7 +110,6 @@ void ReadID() {
             printf("\n");
             send_chat_id(tgID); // Отправляем идентификатор чата
             send_message(lastID); // Отправляем сообщение с идентификатором чата
-//            GenerateQrCodeID(lastID); //Отправляем Qr-код
         }
     } else {
         printf("Файл пуст или не удалось прочитать содержимое.\n");
